@@ -1,0 +1,52 @@
+# 
+# ds-name:ds-type:min:max
+# ds-type: ABSOLUTE, COUNTER, DERIVE, or GAUGE
+# Use counter if you value only increases to show the difference between readings.
+# min and max define the range of valid values for data stored for this data-source.
+# If U is specified for either the min or max value, it will be set to unknown, meaning that no range checks will happen.
+# 
+pg_connections           locked:gauge:0:U, active:gauge:0:U, idle:gauge:0:U, idle_transaction:gauge:0:U, idle_trans_abort:gauge:0:U, fastpath:gauge:0:U, disabled:gauge:0:U
+pg_databases             size:gauge:0:U
+pg_buffercache           size:gauge:0:U
+pg_txns                  txns:gauge:0:U
+pg_buffercache_databases size:gauge:0:U
+pg_commit_ratio          dcommitratio:gauge:0:U
+pg_bkends                backends:gauge:0:U
+pg_xact_commit           commits:counter:0:U
+pg_xact_rollback         rollbacks:counter:0:U
+pg_blks_read             read:counter:0:U
+pg_blks_hit              hit:counter:0:U
+pg_idx_scan              idxscan:counter:0:U
+pg_idx_tup_read          idxtupread:counter:0:U
+pg_idx_tup_fetch         idxtupfetch:counter:0:U
+pg_idx_blks_read         idxblksread:counter:0:U
+pg_idx_blks_hit          idxblkshit:counter:0:U
+pg_seq_scan              seqscan:counter:0:U
+pg_seq_tup_read          seqtupread:counter:0:U
+pg_tup_returned          ret:counter:0:U
+pg_tup_fetched           fetch:counter:0:U
+pg_tup_inserted          ins:counter:0:U
+pg_tup_updated           upd:counter:0:U
+pg_tup_deleted           del:counter:0:U
+pg_deadlocks             deadlocks:counter:0:U
+pg_blk_read_time         blk_read_time:gauge:0:U
+pg_blk_write_time        blk_write_time:gauge:0:U
+pg_xlog                  xlog_count:gauge:0:U
+pg_trig_disabled         pg_trig_disabled:gauge:0:U
+pg_hit_ratio             pg_hit_ratio:gauge:100:U
+pg_concurrent_txns       txns:gauge:0:U
+pg_connection_state      connections:gauge:0:U
+pg_db_txns               txns:counter:0:U
+pg_conflicts             tblspace:counter:0:U, lock:counter:0:U, snapshot:counter:0:U, bufferpin:counter:0:U, deadlock:counter:0:U
+pg_a_location            location:gauge:0:U
+pg_b_location            receive:gauge:0:U, replay:gauge:0:U
+pg_conns                 connections:gauge:0:U
+pg_query_length          query_length:gauge:0:U
+pg_query_length_min      query_length:gauge:0:U
+pg_query_length_hour     query_length:gauge:0:U
+pg_wait_length           wait_length:gauge:0:U
+pg_xact_length           xact_length:gauge:0:U
+db_size_by_study         size:gauge:0:U
+pg_size_by_table         size:gauge:0:U
+pg_planning_time         planning_time:gauge:0:U
+pg_stat_tables           seq_scan:counter:0:U,seq_tup_read:counter:0:U,idx_scan:counter:0:U,idx_tup_fetch:counter:0:U,n_tup_ins:counter:0:U,n_tup_upd:counter:0:U,n_tup_del:counter:0:U,n_tup_hot_upd:counter:0:U,n_live_tup:gauge:0:U,n_dead_tup:gauge:0:U,n_mod_since_analyze:gauge:0:U,vacuum_count:counter:0:U,autovacuum_count:counter:0:U,analyze_count:counter:0:U, autoanalyze_count:counter:0:U
