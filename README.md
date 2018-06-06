@@ -90,6 +90,86 @@ Use the Stats for Standalone Server and add the following lines
   </Database>
 ```
 
+The use of stat_tables and planning_time requires editing these sections to your needs.
+
+#### stat_tables
+
+You only need this is you want this information for a specific table, otherwise you can use the following queries out of the postgresql_default.conf file. The only things not covered by the default is the autovacuum and analyze portions of the stat_tables.
+* queries_by_table
+* query_plans_by_table
+* table_states_by_table
+
+You need to edit the query and add the table names, in two places, that you wish to capature the stats, for both the main table and the toast table.
+
+```apache
+  <Query stat_tables>
+    Statement "SELECT 
+	b.schemaname || '_' || b.relname AS table, 
+    b.seq_scan,
+    b.seq_tup_read,
+    b.idx_scan,
+    b.idx_tup_fetch,
+    b.n_tup_ins,
+    b.n_tup_upd,
+    b.n_tup_del,
+    b.n_tup_hot_upd,
+    b.n_live_tup,
+    b.n_dead_tup,
+    b.n_mod_since_analyze,
+    b.vacuum_count,
+    b.autovacuum_count,
+    b.analyze_count,
+    b.autoanalyze_count
+FROM pg_stat_all_tables b
+WHERE relname IN ('table_name')
+UNION ALL
+SELECT 
+	b.schemaname || '_pg_toast_' || a.relname AS table, 
+    b.seq_scan,
+    b.seq_tup_read,
+    b.idx_scan,
+    b.idx_tup_fetch,
+    b.n_tup_ins,
+    b.n_tup_upd,
+    b.n_tup_del,
+    b.n_tup_hot_upd,
+    b.n_live_tup,
+    b.n_dead_tup,
+    b.n_mod_since_analyze,
+    b.vacuum_count,
+    b.autovacuum_count,
+    b.analyze_count,
+    b.autoanalyze_count
+FROM pg_class a 
+LEFT JOIN pg_stat_all_tables b ON b.relname = 'pg_toast_' || a.oid
+WHERE a.relname IN ('table_name');"
+    <Result>
+      Type pg_stat_tables
+      InstancesFrom "table"
+      ValuesFrom seq_scan,seq_tup_read,idx_scan,idx_tup_fetch,n_tup_ins,n_tup_upd,n_tup_del,n_tup_hot_upd,n_live_tup,n_dead_tup,n_mod_since_analyze,vacuum_count,autovacuum_count,analyze_count, autoanalyze_count
+    </Result>
+  </Query>
+```
+
+Note: I need to update this query for you to be able to specify schema. The current queries limited by the fact that all tables with the same name will be reported back no matter which schema they are found.
+
+#### planning_time
+
+In this example I am testing the planning time of quering pg_roles. This is sendign an array of arrays to the planning_time functions, this means that you can test several queries at once within the same transaction block / data snapshot.
+
+```apache
+  <Query planning_time>
+    Statement "SELECT * FROM ds.planning_time(ARRAY[
+ARRAY['pg_roles', E'SELECT * FROM pg_roles']
+]);"
+    <Result>
+      Type pg_planning_time
+      InstancesFrom "query"
+      ValuesFrom planning_time
+    </Result>
+  </Query>
+```
+
 ## Postgres 10+
 
 ### Stats for Standalone Server
