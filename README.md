@@ -142,4 +142,4 @@ Use the Stats for Standalone Server and add the following lines
 
 My recomendation if you are running both a primary and secondary server is to add the stats for primary and secondary to the both servers for when you swap the two servers.
 
-NOTE: The planning_time requires the planning time function from my SCHARP-PG-DBA-Tools toolset.
+NOTE: The planning_time requires the planning time function from my [SCHARP-PG-DBA-Tools](https://github.com/LloydAlbin/SCHARP-PG-DBA-Tools) toolset.
