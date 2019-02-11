@@ -13,7 +13,7 @@ To install this, just copy the first two files into your collectd installation. 
 
 You will want to edit the end of the postgresql.conf file to add a Database section for each of your servers and sometimes spevialized ones for specific databases.
 
-## Postgres 9.4-
+## Postgres 9.5-
 
 ### Stats for Standalone Server
 
@@ -170,7 +170,7 @@ ARRAY['pg_roles', E'SELECT * FROM pg_roles']
   </Query>
 ```
 
-## Postgres 10+
+## Postgres 9.6+
 
 ### Stats for Standalone Server
 
@@ -181,23 +181,23 @@ ARRAY['pg_roles', E'SELECT * FROM pg_roles']
     Port "5432"
     User "postgres"
     Query connections
-    Query connection_states_10
-    Query connection_state_10
+    Query connection_states_96
+    Query connection_state_96
     Query database_size
     Query buffercache
     Query buffercache_databases
     Query database_transactions
     Query transactions
-    Query concurrent_txns_10
+    Query concurrent_txns_96
     Query pg_hit_ratio
-    Query pg_xlog_10
-    Query connection_state_by_database_10
+    Query pg_xlog_96
+    Query connection_state_by_database_96
     Query database_commit_ratio_by_database
     Query database_stats_by_database
     Query query_length
     Query query_length_server
-    Query wait_length_10
-    Query wait_length_server_10
+    Query wait_length_96
+    Query wait_length_server_96
     Query transaction_length
     Query transaction_length_server
   </Database>
@@ -208,7 +208,7 @@ ARRAY['pg_roles', E'SELECT * FROM pg_roles']
 Use the Stats for Standalone Server and add the following lines
 
 ```apache
-    Query a_server_location_10
+    Query a_server_location_96
 ```
 
 ### Stats for Seconary Server
@@ -216,7 +216,7 @@ Use the Stats for Standalone Server and add the following lines
 Use the Stats for Standalone Server and add the following lines
 
 ```apache
-    Query b_server_location_10
+    Query b_server_location_96
     Query pg_conflicts
 ```
 
