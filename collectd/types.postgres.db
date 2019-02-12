@@ -50,3 +50,5 @@ db_size_by_study         size:gauge:0:U
 pg_size_by_table         size:gauge:0:U
 pg_planning_time         planning_time:gauge:0:U
 pg_stat_tables           seq_scan:counter:0:U,seq_tup_read:counter:0:U,idx_scan:counter:0:U,idx_tup_fetch:counter:0:U,n_tup_ins:counter:0:U,n_tup_upd:counter:0:U,n_tup_del:counter:0:U,n_tup_hot_upd:counter:0:U,n_live_tup:gauge:0:U,n_dead_tup:gauge:0:U,n_mod_since_analyze:gauge:0:U,vacuum_count:counter:0:U,autovacuum_count:counter:0:U,analyze_count:counter:0:U, autoanalyze_count:counter:0:U
+pg_autovacuums           autovacuums:gauge:0:U
+pg_autovacuum_length     autovacuums:gauge:0:U
