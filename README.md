@@ -200,6 +200,10 @@ ARRAY['pg_roles', E'SELECT * FROM pg_roles']
     Query wait_length_server_96
     Query transaction_length
     Query transaction_length_server
+    Query autovacuums_96
+    Query autovacuums_server_96
+    Query transaction_length_10
+    Query autovacuum_length_server_10
   </Database>
 ```
 
